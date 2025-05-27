@@ -2,6 +2,7 @@
 import HelloWorld from './components/HelloWorld.vue'
 import TheWelcome from './components/TheWelcome.vue'
 import PlayerTable from './components/PlayerTable.vue'
+import Round from './components/Round.vue';
 </script>
 
 <template>
@@ -15,7 +16,7 @@ import PlayerTable from './components/PlayerTable.vue'
 
   <main>
     <!-- <TheWelcome /> -->
-     <PlayerTable />
+     <Round />
   </main>
 </template>
 
