@@ -16,6 +16,12 @@ import Round from './components/Round.vue';
     <!-- <TheWelcome /> -->
      <Round />
   </main>
+
+  <footer>
+    <div>
+      <p>This is the footer</p>
+    </div>
+  </footer>
 </template>
 
 <style scoped>
