@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoundStore } from '@/stores/round'
 import type { Round, Player, Game, GameParticipant } from "@/types"
 import { getPointsForPlayerInGame, getTotalPointsForPlayer } from '@/utils/scoring'
+import AddGame from '@/components/AddGame.vue'
 
 const store = useRoundStore()
 const round = computed(() => store.round)
@@ -115,7 +116,8 @@ addTestData()
 </script>
 
 <template>
-  <div>
+  <div class="wrapper">
+    <AddGame />
     <h1>Round</h1>
     <table>
       <thead>
