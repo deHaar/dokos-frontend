@@ -1,21 +1,21 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import type { Player } from '@/types'
+import { defineStore } from "pinia";
+import { ref } from "vue";
+import type { Player } from "@/types";
 
-export const usePlayerSelectionStore = defineStore('playerSelection', () => {
-  // Each selection holds a player object or null
-  const selectedPlayers = ref([{} as Player | null, {} as Player | null, {} as Player | null, {} as Player | null]);
+export const usePlayerSelectionStore = defineStore("playerSelection", () => {
+  const selectedPlayers = ref({
+    forehand: {} as Player | null,
+    secondHand: {} as Player | null,
+    thirdHand: {} as Player | null,
+    backhand: {} as Player | null,
+  });
 
-  function updateSelection(index: number, player: Player) {
-    selectedPlayers.value[index] = player;
+  function updateSelection(position: string, player: Player | null) {
+    selectedPlayers.value[position] = player;
   }
 
   return {
     selectedPlayers,
     updateSelection,
   };
-
-  function add(player: Player) {
-    
-  }
 });
