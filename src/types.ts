@@ -26,3 +26,8 @@ export interface Round {
   players: Player[];
   games: Game[];
 }
+
+export enum Team {
+  RE = "Re",
+  KONTRA = "Kontra"
+}

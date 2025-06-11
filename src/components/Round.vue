@@ -4,6 +4,7 @@ import { useRoundStore } from "@/stores/round";
 import type { Round, Player, Game, GameParticipant } from "@/types";
 import { getPointsForPlayerInGame, getTotalPointsForPlayer } from "@/utils/scoring";
 import PlayerSelection from "@/components/PlayerSelection.vue";
+import GameParticipation from "@/components/GameParticipation.vue";
 
 const store = useRoundStore();
 const round = computed(() => store.round);
@@ -141,10 +142,11 @@ addTestData();
 <template>
   <div class="wrapper" padding="24px">
     <div>
-      <PlayerSelection padding="16px" />
+      <!-- <PlayerSelection padding="16px" /> -->
+      <GameParticipation />
     </div>
     <div>
-      <h1>Round</h1>
+      <h1>Doko-Runde</h1>
       <table>
         <thead>
           <tr>
@@ -179,6 +181,6 @@ addTestData();
 .container {
   display: flex;
   column-gap: 20px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 </style>
