@@ -6,8 +6,7 @@ export interface Player {
 export interface GameParticipant {
   playerId: number;
   points: number;
-  re: boolean;
-  won: boolean;
+  team: Team;
 }
 
 export interface Game {
@@ -25,4 +24,9 @@ export interface Round {
   id: number;
   players: Player[];
   games: Game[];
+}
+
+export enum Team {
+  RE = "RE",
+  KONTRA = "KONTRA"
 }

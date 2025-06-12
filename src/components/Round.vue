@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useRoundStore } from "@/stores/round";
-import type { Round, Player, Game, GameParticipant } from "@/types";
+import { type Round, type Player, type Game, type GameParticipant, Team } from "@/types";
 import { getPointsForPlayerInGame, getTotalPointsForPlayer } from "@/utils/scoring";
 import PlayerSelection from "@/components/PlayerSelection.vue";
+import AddNewGame from "./AddNewGame.vue";
 
 const store = useRoundStore();
 const round = computed(() => store.round);
@@ -51,26 +52,22 @@ function addTestData() {
     forehand: {
       playerId: 2,
       points: 2,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     secondHand: {
       playerId: 3,
       points: 2,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     thirdHand: {
       playerId: 4,
       points: -2,
-      re: false,
-      won: false,
+      team: Team.KONTRA,
     },
     backhand: {
       playerId: 5,
       points: -2,
-      re: false,
-      won: false,
+      team: Team.KONTRA,
     },
     value: 2,
     bocks: 0,
@@ -80,26 +77,22 @@ function addTestData() {
     forehand: {
       playerId: 1,
       points: 4,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     secondHand: {
       playerId: 3,
       points: -4,
-      re: false,
-      won: false,
+      team: Team.KONTRA,
     },
     thirdHand: {
       playerId: 4,
       points: 4,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     backhand: {
       playerId: 5,
       points: -4,
-      re: false,
-      won: false,
+      team: Team.KONTRA
     },
     value: 4,
     bocks: 0,
@@ -109,26 +102,22 @@ function addTestData() {
     forehand: {
       playerId: 4,
       points: 6,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     secondHand: {
       playerId: 5,
       points: -6,
-      re: false,
-      won: false,
+      team: Team.KONTRA,
     },
     thirdHand: {
       playerId: 1,
       points: 6,
-      re: true,
-      won: true,
+      team: Team.RE,
     },
     backhand: {
       playerId: 2,
       points: -6,
-      re: false,
-      won: false,
+      team: Team.RE,
     },
     value: 6,
     bocks: 0,
@@ -140,8 +129,11 @@ addTestData();
 
 <template>
   <div class="wrapper" padding="24px">
-    <div>
+    <!-- <div>
       <PlayerSelection padding="16px" />
+    </div> -->
+    <div>
+      <AddNewGame />
     </div>
     <div>
       <h1>Round</h1>
