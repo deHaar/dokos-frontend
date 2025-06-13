@@ -10,6 +10,11 @@ export interface GameParticipant {
   won: boolean;
 }
 
+export interface GameParticipator {
+  playerId: number,
+  team: Team
+}
+
 export interface Game {
   id: number;
   mixerId: number;

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useRoundStore } from "@/stores/round";
-import type { Round, Player, Game, GameParticipant } from "@/types";
+import type { Round, Player, Game, GameParticipator, GameParticipant } from "@/types";
+import { Team } from '@/types'
 import { getPointsForPlayerInGame, getTotalPointsForPlayer } from "@/utils/scoring";
 import PlayerSelection from "@/components/PlayerSelection.vue";
 import GameParticipation from "@/components/GameParticipation.vue";
@@ -136,6 +137,18 @@ function addTestData() {
   });
 }
 
+const forehandGP = reactive({ playerId: -1, team: Team.KONTRA })
+
+function receiveGP(gp: GameParticipator) {
+  console.log('Received { playerId: ' + gp.playerId + ', team: ' + gp.team.toString())
+  forehandGP.playerId = gp.playerId;
+  forehandGP.team = gp.team
+}
+
+function logUpdate(pos: string, what: string) {
+  console.log('[Round.vue | ' + pos + '] —> ' + what + ' updated: { playerId: ' + forehandGP.playerId + ', team: ' + forehandGP.team.toString() + ' }')
+}
+
 addTestData();
 </script>
 
@@ -143,7 +156,10 @@ addTestData();
   <div class="wrapper" padding="24px">
     <div>
       <!-- <PlayerSelection padding="16px" /> -->
-      <GameParticipation />
+      <GameParticipation id="forehand" v-model:player-id="forehandGP.playerId" v-model:team="forehandGP.team" @update:player-id="logUpdate('forehand', 'playerId')" @update:team="logUpdate('forehand', 'te')"/>
+      <div>
+          <p>Spieler {{ forehandGP.playerId }} war {{ forehandGP.team.toString() }}</p>
+      </div>
     </div>
     <div>
       <h1>Doko-Runde</h1>
