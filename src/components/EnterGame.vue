@@ -14,6 +14,13 @@ const forehand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
 const secondHand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
 const thirdHand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
 const backhand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
+
+// function calcPoints() {
+//     let teams = [forehand.value.team, secondHand.value.team, thirdHand.value.team, backhand.value.team]
+//     let re = teams.filter((t) => t === Team.RE)
+
+//     if (re.length 2)
+// }
 </script>
 
 <template>
@@ -24,7 +31,7 @@ const backhand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
         </label>
         <label for="secondHand">
             Zweithand
-        <GameParticipation id="secondHand" v-model:player-id="secondHand.playerId" v-model:team="secondHand.team" />
+            <GameParticipation id="secondHand" v-model:player-id="secondHand.playerId" v-model:team="secondHand.team" />
         </label>
     </div>
     <div class="container">
@@ -59,24 +66,27 @@ const backhand = ref<GameParticipator>({ playerId: -1, team: Team.KONTRA})
         </label>
     </div>
     <div class="container">
+        <h1>Debug output hier drunter, kommt noch raus ;-)</h1>
+    </div>
+    <div class="container">
         <h3>{{ winnerTeam.toString() }} hat das Spiel mit dem Wert {{ gameVal }} gewonnen, gegeben hat {{ round.players.find(({id}) => id === mixerId)?.displayName }}</h3>
     </div>
     <div class="container">
         <label for="outForehand">
             Vorhand:
-            <p id="outForehand">{{ round.players.find(({id}) => id === forehand.playerId)?.displayName }} ({{ forehand.team.toString() }})</p>
+            <p id="outForehand">{{ round.players.find(({id}) => id === forehand.playerId)?.displayName }} ({{ forehand.team.toString() }}): {{ forehand.team == winnerTeam ? gameVal : -gameVal }} Punkte</p>
         </label>
         <label for="outSecondHand">
             Zweithand:
-            <p id="outSecondHand">{{ round.players.find(({id}) => id === secondHand.playerId)?.displayName }}  ({{ secondHand.team.toString() }})</p>
+            <p id="outSecondHand">{{ round.players.find(({id}) => id === secondHand.playerId)?.displayName }}  ({{ secondHand.team.toString() }}): {{ secondHand.team == winnerTeam ? gameVal : -gameVal }} Punkte</p>
         </label>
         <label for="outThirdHand">
             Dritthand:
-            <p id="outThirdHand">{{ round.players.find(({id}) => id === thirdHand.playerId)?.displayName }}  ({{ thirdHand.team.toString() }})</p>
+            <p id="outThirdHand">{{ round.players.find(({id}) => id === thirdHand.playerId)?.displayName }}  ({{ thirdHand.team.toString() }}): {{ thirdHand.team == winnerTeam ? gameVal : -gameVal }} Punkte</p>
         </label>
         <label for="outBackhand">
             Hinterhand:
-            <p id="outBackhand">{{ round.players.find(({id}) => id === backhand.playerId)?.displayName }}  ({{ backhand.team.toString() }})</p>
+            <p id="outBackhand">{{ round.players.find(({id}) => id === backhand.playerId)?.displayName }}  ({{ backhand.team.toString() }}): {{ backhand.team == winnerTeam ? gameVal : -gameVal }} Punkte</p>
         </label>
     </div>
 </template>

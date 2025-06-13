@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import EnterGame from './components/EnterGame.vue';
 import HelloWorld from './components/HelloWorld.vue'
 import Round from './components/Round.vue';
 </script>
@@ -14,12 +15,14 @@ import Round from './components/Round.vue';
 
   <main>
     <!-- <TheWelcome /> -->
-     <Round />
+     <div class="wrapper">
+        <Round />
+      </div>
   </main>
 
   <footer>
     <div>
-      <p>This is the footer</p>
+      <EnterGame />
     </div>
   </footer>
 </template>

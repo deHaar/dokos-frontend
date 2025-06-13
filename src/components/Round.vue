@@ -149,17 +149,7 @@ addTestData();
 
 <template>
   <div class="wrapper" padding="24px">
-    <div>
-      <!-- <PlayerSelection padding="16px" /> -->
-      <!-- <GameParticipation id="forehand"
-                         @change="console.log($event.target.value)"
-                         v-model:player-id="forehand.playerId" v-model:team="forehand.team" @update:player-id="logUpdate('forehand', 'playerId')" @update:team="logUpdate('forehand', 'te')"/> -->
-      <EnterGame />  
-    <div>
-          <p>Spieler {{ forehand.playerId }} war {{ forehand.team.toString() }}</p>
-      </div>
-    </div>
-    <div>
+    <div padding="2%">
       <h1>Doko-Runde</h1>
       <table>
         <thead>
