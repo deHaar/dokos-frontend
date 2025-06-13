@@ -6,6 +6,7 @@ import { Team } from '@/types'
 import { getPointsForPlayerInGame, getTotalPointsForPlayer } from "@/utils/scoring";
 import PlayerSelection from "@/components/PlayerSelection.vue";
 import GameParticipation from "@/components/GameParticipation.vue";
+import EnterGame from "./EnterGame.vue";
 
 const store = useRoundStore();
 const round = computed(() => store.round);
@@ -137,16 +138,10 @@ function addTestData() {
   });
 }
 
-const forehandGP = reactive({ playerId: -1, team: Team.KONTRA })
-
-function receiveGP(gp: GameParticipator) {
-  console.log('Received { playerId: ' + gp.playerId + ', team: ' + gp.team.toString())
-  forehandGP.playerId = gp.playerId;
-  forehandGP.team = gp.team
-}
+const forehand = ref({ playerId: -1, team: Team.KONTRA} as GameParticipator)
 
 function logUpdate(pos: string, what: string) {
-  console.log('[Round.vue | ' + pos + '] —> ' + what + ' updated: { playerId: ' + forehandGP.playerId + ', team: ' + forehandGP.team.toString() + ' }')
+  console.log('[Round.vue | ' + pos + '] —> ' + what + ' updated: { playerId: ' + forehand.value.playerId + ', team: ' + forehand.value.team.toString() + ' }')
 }
 
 addTestData();
@@ -156,9 +151,12 @@ addTestData();
   <div class="wrapper" padding="24px">
     <div>
       <!-- <PlayerSelection padding="16px" /> -->
-      <GameParticipation id="forehand" v-model:player-id="forehandGP.playerId" v-model:team="forehandGP.team" @update:player-id="logUpdate('forehand', 'playerId')" @update:team="logUpdate('forehand', 'te')"/>
-      <div>
-          <p>Spieler {{ forehandGP.playerId }} war {{ forehandGP.team.toString() }}</p>
+      <!-- <GameParticipation id="forehand"
+                         @change="console.log($event.target.value)"
+                         v-model:player-id="forehand.playerId" v-model:team="forehand.team" @update:player-id="logUpdate('forehand', 'playerId')" @update:team="logUpdate('forehand', 'te')"/> -->
+      <EnterGame />  
+    <div>
+          <p>Spieler {{ forehand.playerId }} war {{ forehand.team.toString() }}</p>
       </div>
     </div>
     <div>
